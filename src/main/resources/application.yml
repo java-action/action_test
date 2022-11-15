@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://43.200.160.151:3306/wagle?serverTimezone=Asia/Seoul
+    username: dev
+    password: wagle.dev.dev
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate #create
+    properties:
+      hibernate:
+        show_sql: true
