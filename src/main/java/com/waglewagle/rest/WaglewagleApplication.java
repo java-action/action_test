@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WaglewagleApplication {
 
     public static void main(String[] args) {
+
+        System.out.println("test server on");
         SpringApplication.run(WaglewagleApplication.class, args);
     }
 
