@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.REST_PASSWORD }}
           port: ${{ secrets.REST_PORT }}
           script: |
-            echo 'test' > test2
+            echo ${{ secrets.REST_HOST }} > testfile
 
 #      코드 가져오기
 #      - name: checkout
