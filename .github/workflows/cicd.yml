@@ -13,7 +13,6 @@ env:
   REST_CLONE_BRANCH: be/release
   REST_SECRET_YML_PATH: rest/src/main/resources/secret.yml
   REST_GRADLEW_PATH: /root/rest_deploy/rest/gradlew
-  TEST: test5
 
 jobs:
   cicd:
@@ -29,14 +28,16 @@ jobs:
           password: ${{ secrets.REST_PASSWORD }}
           port: ${{ secrets.REST_PORT }}
           script: |
-            echo ${{ env.TEST }} > ${{ env.TEST }}
+            sudo add-apt-repository ppa:openjdk-r/ppa -y
+            sudo apt-get update -y
+            sudo apt install openjdk-11-jdk
 
             rm -rf ${{ env.REST_DEPLOY_DIRNAME }}
             git clone -b ${{ env.REST_CLONE_BRANCH }} --single-branch ${{ env.REST_CLONE_URL }} ${{ env.REST_DEPLOY_DIRNAME }}
             echo '${{ secrets.REST_SECRET_YML }}' > ${{ env.REST_DEPLOY_DIRNAME }}/${{ env.REST_SECRET_YML_PATH }}
             cd ${{ env.REST_DEPLOY_DIRNAME }}/rest/
             ./gradlew bootJar
-            java -jar build/libs/*.jar
+            nohup java -jar build/libs/*.jar &
 
 #      코드 가져오기
 #      - name: checkout
