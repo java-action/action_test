@@ -13,7 +13,7 @@ env:
   REST_CLONE_BRANCH: be/release
   REST_SECRET_YML_PATH: rest/src/main/resources/secret.yml
   REST_GRADLEW_PATH: rest/gradlew
-  TEST: test4
+  TEST: test5
 
 jobs:
   cicd:
