@@ -1,7 +1,9 @@
+name: Backend CI/CD
+
 on:
   pull_request:
     branches:
-      - dev
+      - be/release
     types:
       - closed
 
@@ -16,14 +18,16 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.base.ref }}
 
-      - name: java setup
-        uses: actions/setup-java@v3
-        with:
-          java-version: 11
-          distribution: temurin
+#      빌드
+#      - name: java setup
+#        uses: actions/setup-java@v3
+#        with:
+#          java-version: 11
+#          distribution: temurin
 
-      - name: build and exec
-        run: |
-          chmod +x gradlew
-          ./gradlew bootJar
-          java -jar ./build/libs/demo*.jar
+#      빌드 및 실행
+#      - name: build and exec
+#        run: |
+#          chmod +x gradlew
+#          ./gradlew bootJar
+#          java -jar ./build/libs/demo*.jar
