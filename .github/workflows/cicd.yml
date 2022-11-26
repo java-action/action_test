@@ -13,10 +13,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
+      - name: connect server instance by ssh
+        uses: appleboy/ssh-action@master
         with:
-          ref: ${{ github.event.pull_request.base.ref }}
+          host: ${{ secrets.REST_HOST }}
+          username: ${{ secrets.REST_USERNAME }}
+          password: ${{ secrets.REST_PASSWORD }}
+          port: ${{ secrets.REST_PORT }}
+          script: |
+            echo 'test' > test2
+
+#      코드 가져오기
+#      - name: checkout
+#        uses: actions/checkout@v3
+#        with:
+#          ref: ${{ github.event.pull_request.base.ref }}
 
 #      빌드
 #      - name: java setup
