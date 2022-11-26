@@ -7,6 +7,13 @@ on:
     types:
       - closed
 
+env:
+  REST_DEPLOY_DIRNAME: rest_deploy
+  REST_CLONE_URL: https://github.com/boostcampwm-2022/web17-waglewagle.git
+  REST_CLONE_BRANCH: be/release
+  REST_SECRET_YML: $REST_DEPLOY_DIRNAME/rest/src/main/resources/secret.yml
+  REST_GRADLEW_PATH: $REST_DEPLOY_DIRNAME/rest/gradlew
+
 jobs:
   cicd:
     if: ${{ github.event.pull_request.merged }}
@@ -21,7 +28,11 @@ jobs:
           password: ${{ secrets.REST_PASSWORD }}
           port: ${{ secrets.REST_PORT }}
           script: |
-            echo ${{ secrets.REST_HOST }} > testfile
+            rm -rf $REST_DEPLOY_DIRNAME
+            git clone -b $REST_CLONE_BRANCH --single-branch $REST_CLONE_URL $REST_DEPLOY_DIRNAME
+            echo ${{ secrets.REST_SECRET_YML }} > $REST_SECRET_YML
+            ./REST_GRADLEW_PATH bootJar
+            
 
 #      코드 가져오기
 #      - name: checkout
