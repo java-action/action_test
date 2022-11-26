@@ -11,8 +11,8 @@ env:
   REST_DEPLOY_DIRNAME: rest_deploy
   REST_CLONE_URL: https://github.com/boostcampwm-2022/web17-waglewagle.git
   REST_CLONE_BRANCH: be/release
-  REST_SECRET_YML: ${{ env.REST_DEPLOY_DIRNAME }}/rest/src/main/resources/secret.yml
-  REST_GRADLEW_PATH: ${{ env.REST_DEPLOY_DIRNAME }}/rest/gradlew
+  REST_SECRET_YML_PATH: rest/src/main/resources/secret.yml
+  REST_GRADLEW_PATH: rest/gradlew
   TEST3: test3
 
 jobs:
@@ -33,8 +33,8 @@ jobs:
 
             rm -rf ${{ env.REST_DEPLOY_DIRNAME }}
             git clone -b ${{ env.REST_CLONE_BRANCH }} --single-branch ${{ env.REST_CLONE_URL }} ${{ env.REST_DEPLOY_DIRNAME }}
-            echo ${{ secrets.REST_SECRET_YML }} > ${{ env.REST_SECRET_YML }}
-            ./${{ env.REST_GRADLEW_PATH }} bootJar
+            echo ${{ secrets.REST_SECRET_YML }} > ${{ REST_DEPLOY_DIRNAME }}/${{ env.REST_SECRET_YML_PATH }}
+            ./${{ REST_DEPLOY_DIRNAME }}/${{ env.REST_GRADLEW_PATH }} bootJar
 
 #      코드 가져오기
 #      - name: checkout
