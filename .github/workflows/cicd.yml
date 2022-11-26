@@ -13,7 +13,7 @@ env:
   REST_CLONE_BRANCH: be/release
   REST_SECRET_YML_PATH: rest/src/main/resources/secret.yml
   REST_GRADLEW_PATH: rest/gradlew
-  TEST3: test3
+  TEST: test5
 
 jobs:
   cicd:
@@ -29,7 +29,7 @@ jobs:
           password: ${{ secrets.REST_PASSWORD }}
           port: ${{ secrets.REST_PORT }}
           script: |
-            echo ${{ env.TEST3 }} > test3
+            echo ${{ env.TEST }} > ${{ env.TEST }}
 
             rm -rf ${{ env.REST_DEPLOY_DIRNAME }}
             git clone -b ${{ env.REST_CLONE_BRANCH }} --single-branch ${{ env.REST_CLONE_URL }} ${{ env.REST_DEPLOY_DIRNAME }}
