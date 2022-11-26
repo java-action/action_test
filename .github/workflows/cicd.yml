@@ -13,6 +13,8 @@ env:
   REST_CLONE_BRANCH: be/release
   REST_SECRET_YML: $REST_DEPLOY_DIRNAME/rest/src/main/resources/secret.yml
   REST_GRADLEW_PATH: $REST_DEPLOY_DIRNAME/rest/gradlew
+  TEST1: test1
+  TEST2: test2
 
 jobs:
   cicd:
@@ -28,10 +30,13 @@ jobs:
           password: ${{ secrets.REST_PASSWORD }}
           port: ${{ secrets.REST_PORT }}
           script: |
-            rm -rf $REST_DEPLOY_DIRNAME
-            git clone -b $REST_CLONE_BRANCH --single-branch $REST_CLONE_URL $REST_DEPLOY_DIRNAME
-            echo ${{ secrets.REST_SECRET_YML }} > $REST_SECRET_YML
-            ./REST_GRADLEW_PATH bootJar
+            echo $TEST1 > test1
+            echo ${{ TEST2 }} > test2
+
+#            rm -rf $REST_DEPLOY_DIRNAME
+#            git clone -b $REST_CLONE_BRANCH --single-branch $REST_CLONE_URL $REST_DEPLOY_DIRNAME
+#            echo ${{ secrets.REST_SECRET_YML }} > $REST_SECRET_YML
+#            ./REST_GRADLEW_PATH bootJar
             
 
 #      코드 가져오기
