@@ -32,8 +32,8 @@ jobs:
             echo ${{ env.TEST3 }} > test3
 
             rm -rf ${{ env.REST_DEPLOY_DIRNAME }}
-            git clone -b ${{ env.REST_CLONE_BRANCH }} --single-branch {{ env.REST_CLONE_URL env.REST_DEPLOY_DIRNAME }}
-            echo ${{ secrets.REST_SECRET_YML }} > {{ env.REST_SECRET_YML }}
+            git clone -b ${{ env.REST_CLONE_BRANCH }} --single-branch ${{ env.REST_CLONE_URL env.REST_DEPLOY_DIRNAME }}
+            echo ${{ secrets.REST_SECRET_YML }} > ${{ env.REST_SECRET_YML }}
             ./${{ env.REST_GRADLEW_PATH }} bootJar
 
 #      코드 가져오기
