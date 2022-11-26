@@ -36,6 +36,7 @@ jobs:
             echo '${{ secrets.REST_SECRET_YML }}' > ${{ env.REST_DEPLOY_DIRNAME }}/${{ env.REST_SECRET_YML_PATH }}
             cd ${{ env.REST_DEPLOY_DIRNAME }}/rest/
             ./gradlew bootJar
+            java -jar build/libs/*.jar
 
 #      코드 가져오기
 #      - name: checkout
