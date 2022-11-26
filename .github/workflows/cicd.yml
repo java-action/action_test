@@ -15,6 +15,7 @@ env:
   REST_GRADLEW_PATH: $REST_DEPLOY_DIRNAME/rest/gradlew
   TEST1: test1
   TEST2: test2
+  TEST3: test3
 
 jobs:
   cicd:
@@ -32,6 +33,7 @@ jobs:
           script: |
             echo $TEST1 > test1
             echo ${{ TEST2 }} > test2
+            echo ${{ env.TEST3 }} > test3
 
 #            rm -rf $REST_DEPLOY_DIRNAME
 #            git clone -b $REST_CLONE_BRANCH --single-branch $REST_CLONE_URL $REST_DEPLOY_DIRNAME
